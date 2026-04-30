@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Form UMKM - Mie Ayam Alok | Pendaftaran Bisnis</title>
+    <!-- Tailwind CSS CDN + Font Awesome Icons -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Inter Font (alternatif modern) -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+    <!-- Font Awesome 6 (free) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        }
+        body {
+            background: linear-gradient(135deg, #eef2f9 0%, #dcfce7 100%);
+            min-height: 100vh;
+        }
+        /* Custom scroll & smooth transitions */
+        .fade-in {
+            animation: fadeInUp 0.7s cubic-bezier(0.2, 0.9, 0.4, 1.1) forwards;
+        }
+        @keyframes fadeInUp {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 25px 35px -12px rgba(0, 0, 0, 0.15);
+        }
+        .input-focus:focus {
+            box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.25);
+            border-color: #22c55e;
+            outline: none;
+        }
+        .btn-hover {
+            transition: all 0.2s ease-in-out;
+        }
+        .btn-hover:hover {
+            transform: scale(1.02);
+            background-color: #0b5e2e;
+            box-shadow: 0 8px 18px rgba(21, 128, 61, 0.3);
+        }
+        .product-card {
+            transition: all 0.25s ease;
+            border-left: 4px solid #22c55e;
+        }
+        .product-card:hover {
+            background-color: #fefce8;
+            border-left-width: 6px;
+            padding-left: 1.1rem;
+        }
+        .badge-kategori {
+            background: #e0f2fe;
+            color: #0369a1;
+        }
+        @media (max-width: 640px) {
+            .container-padding {
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+        }
+    </style>
+</head>
+<body class="py-8 px-4 sm:py-12">
+
+    <div class="max-w-5xl mx-auto fade-in">
+        <!-- Header dengan ilustrasi sederhana -->
+        <div class="text-center mb-8 md:mb-10">
+            <div class="inline-flex items-center justify-center bg-white/60 backdrop-blur-sm rounded-full px-5 py-2 shadow-sm mb-4">
+                <i class="fas fa-store text-green-600 mr-2 text-lg"></i>
+                <span class="text-green-800 font-medium tracking-wide">UMKM Digital Registration</span>
+            </div>
+            <h1 class="text-3xl md:text-4xl font-extrabold text-gray-800 tracking-tight">✨ Form Lengkap UMKM ✨</h1>
+            <p class="text-gray-600 mt-2 max-w-lg mx-auto">Isi data sesuai identitas usaha Mie Ayam Alok — Cepat, mudah, dan terintegrasi</p>
+        </div>
+
+        <!-- Grid Utama: Form + Ringkasan / Produk -->
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <!-- Bagian FORM (2/3 di layar lg) -->
+            <div class="lg:col-span-2 fade-in" style="animation-delay: 0.1s;">
+                <div class="bg-white/95 backdrop-blur-sm rounded-2xl shadow-xl border border-green-100 overflow-hidden card-hover transition-all">
+                    <div class="bg-gradient-to-r from-green-700 to-emerald-600 px-6 py-4 flex items-center gap-3">
+                        <i class="fas fa-pen-alt text-white text-xl"></i>
+                        <h2 class="text-xl font-semibold text-white tracking-wide">Informasi Lengkap Usaha</h2>
+                    </div>
+                    <div class="p-6 md:p-8">
+                        <form id="umkmForm" class="space-y-6">
+                            <!-- Nama UMKM (prefilled) -->
+                            <div class="group">
+                                <label class="block text-gray-700 font-semibold mb-1 text-sm flex items-center gap-2">
+                                    <i class="fas fa-utensils text-green-600 text-sm"></i> Nama UMKM <span class="text-red-500">*</span>
+                                </label>
+                                <input type="text" id="namaUMKM" value="mie ayam alok" class="w-full px-4 py-3 border border-gray-300 rounded-xl bg-gray-50 focus:bg-white transition input-focus" required>
+                            </div>
+
+                            <div class="grid sm:grid-cols-2 gap-5">
+                                <div>
+                                    <label class="block text-gray-700 font-semibold mb-1 text-sm flex items-center gap-2">
+                                        <i class="fas fa-user-circle text-green-600"></i> Nama Pemilik
+                                    </label>
+                                    <input type="text" id="namaPemilik" value="rasyaa" class="w-full px-4 py-3 border border-gray-300 rounded-xl bg-gray-50 focus:bg-white transition input-focus">
+                                </div>
+                                <div>
+                                    <label class="block text-gray-700 font-semibold mb-1 text-sm flex items-center gap-2">
+                                        <i class="fas fa-phone-alt text-green-600"></i> No. HP / WhatsApp
+                                    </label>
+                                    <input type="tel" id="noHp" value="0881027311886" class="w-full px-4 py-3 border border-gray-300 rounded-xl bg-gray-50 focus:bg-white transition input-focus">
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="block text-gray-700 font-semibold mb-1 text-sm flex items-center gap-2">
+                                    <i class="fas fa-map-marker-alt text-green-600"></i> Alamat Lengkap
+                                </label>
+                                <input type="text" id="alamat" value="jln.petamburan 06" class="w-full px-4 py-3 border border-gray-300 rounded-xl bg-gray-50 focus:bg-white transition input-focus">
+                            </div>
+
+                            <div class="grid sm:grid-cols-2 gap-5">
+                                <div>
+                                    <label class="block text-gray-700 font-semibold mb-1 text-sm flex items-center gap-2">
+                                        <i class="fas fa-envelope text-green-600"></i> Email (opsional)
+                                    </label>
+                                    <input type="email" id="email" placeholder="contoh@domain.com" class="w-full px-4 py-3 border border-gray-300 rounded-xl bg-gray-50 focus:bg-white transition input-focus">
+                                </div>
+                                <div>
+                                    <label class="block text-gray-700 font-semibold mb-1 text-sm flex items-center gap-2">
+                                        <i class="fas fa-clock text-green-600"></i> Jam Operasional
+                                    </label>
+                                    <input type="text" id="jamOperasional" value="09.00 - 17.00" class="w-full px-4 py-3 border border-gray-300 rounded-xl bg-gray-50 focus:bg-white transition input-focus">
+                                </div>
+                            </div>
+
+                            <div>
+                                <label class="block text-gray-700 font-semibold mb-1 text-sm flex items-center gap-2">
+                                    <i class="fas fa-store-alt text-green-600"></i> Kategori Usaha
+                                </label>
+                                <input type="text" id="kategori" value="usaha kuliner, makanan cepat saji" class="w-full px-4 py-3 border border-gray-300 rounded-xl bg-gray-50 focus:bg-white transition input-focus">
+                            </div>
+
+                            <div>
+                                <label class="block text-gray-700 font-semibold mb-1 text-sm flex items-center gap-2">
+                                    <i class="fas fa-align-left text-green-600"></i> Deskripsi Usaha
+                                </label>
+                                <textarea id="deskripsi" rows="2" class="w-full px-4 py-3 border border-gray-300 rounded-xl bg-gray-50 focus:bg-white transition input-focus">mie kuning rebus dengan topping ayam kecap, sayuran, dan kuah gurih.</textarea>
+                            </div>
+
+                            <!-- Daftar Produk (disediakan textarea agar mudah edit, sudah terisi data produk sesuai required) -->
+                            <div>
+                                <label class="block text-gray-700 font-semibold mb-1 text-sm flex items-center gap-2">
+                                    <i class="fas fa-list-ul text-green-600"></i> Daftar Produk (satu produk per baris)
+                                </label>
+                                <textarea id="daftarProduk" rows="3" class="w-full px-4 py-3 border border-gray-300 rounded-xl bg-gray-50 focus:bg-white transition input-focus" placeholder="Contoh: 1. Mie ayam biasa 15.000&#10;2. Mie ayam spesial 20.000">1. mie ayam biasa 15.000
+2. mie ayam spesial bakso + pangsit rebus 20.000</textarea>
+                                <p class="text-xs text-gray-500 mt-1"><i class="fas fa-info-circle"></i> Format bebas, nanti muncul di bagian ringkasan produk</p>
+                            </div>
+
+                            <!-- Nama Produk Unggulan + Harga + Deskripsi singkat -->
+                            <div class="border-t border-gray-200 pt-5 mt-2">
+                                <h3 class="text-md font-semibold text-gray-800 mb-3 flex items-center gap-2"><i class="fas fa-star text-yellow-500"></i> Produk Unggulan</h3>
+                                <div class="grid sm:grid-cols-2 gap-4">
+                                    <div>
+                                        <label class="block text-gray-700 text-sm font-medium">Nama Produk </label>
+                                        <input type="text" id="namaProdukUnggulan" value="mie ayam alok" class="w-full px-4 py-2.5 border rounded-xl bg-gray-50 input-focus">
+                                    </div>
+                                    <div>
+                                        <label class="block text-gray-700 text-sm font-medium">Harga (Range)</label>
+                                        <input type="text" id="hargaRange" value="15.000 - 20.000 spesial" class="w-full px-4 py-2.5 border rounded-xl bg-gray-50 input-focus">
+                                    </div>
+                                </div>
+                                <div class="mt-3">
+                                    <label class="block text-gray-700 text-sm font-medium">Deskripsi Singkat</label>
+                                    <input type="text" id="deskripsiSingkat" value="rasanya sangat lezat dan kuah nya gurih" class="w-full px-4 py-2.5 border rounded-xl bg-gray-50 input-focus">
+                                </div>
+                            </div>
+
+                            <!-- Tombol SAVE & PREVIEW (simulasi) -->
+                            <div class="flex flex-wrap gap-4 pt-4">
+                                <button type="button" id="simpanBtn" class="bg-green-600 hover:bg-green-700 text-white font-semibold py-3 px-8 rounded-xl shadow-md btn-hover transition flex items-center gap-2">
+                                    <i class="fas fa-save"></i> Simpan Data UMKM
+                                </button>
+                                <button type="button" id="resetBtn" class="border border-gray-400 bg-white text-gray-700 hover:bg-gray-100 font-medium py-3 px-6 rounded-xl transition flex items-center gap-2">
+                                    <i class="fas fa-undo-alt"></i> Reset Form
+                                </button>
+                            </div>
+                            <div id="formFeedback" class="text-sm font-medium hidden p-3 rounded-lg mt-2 transition-all"></div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sisi Kanan: Preview & Ringkasan UMKM (dengan animasi)-->
+            <div class="lg:col-span-1 fade-in" style="animation-delay: 0.2s;">
+                <!-- Card Info UMKM (Preview langsung dari data) -->
+                <div class="bg-white rounded-2xl shadow-xl overflow-hidden sticky top-6 border border-green-100 card-hover">
+                    <div class="bg-gradient-to-br from-green-50 to-emerald-50 px-5 py-4 border-b border-green-200 flex items-center justify-between">
+                        <h3 class="font-bold text-gray-800 text-lg flex items-center gap-2"><i class="fas fa-chalkboard-user text-green-700"></i> Preview Bisnis</h3>
+                        <span class="text-xs bg-white px-2 py-1 rounded-full shadow-sm text-green-700"><i class="far fa-eye"></i> Live</span>
+                    </div>
+                    <div class="p-5 space-y-4">
+                        <div class="border-b border-dashed border-gray-200 pb-3">
+                            <p class="text-xs text-gray-500 uppercase tracking-wide">Nama UMKM</p>
+                            <p id="previewNamaUMKM" class="font-bold text-gray-800 text-lg">mie ayam alok</p>
+                        </div>
+                        <div class="grid grid-cols-2 gap-3 text-sm">
+                            <div>
+                                <p class="text-gray-500 text-xs">Pemilik</p>
+                                <p id="previewPemilik" class="font-medium text-gray-800">rasyaa</p>
+                            </div>
+                            <div>
+                                <p class="text-gray-500 text-xs">Kontak</p>
+                                <p id="previewKontak" class="font-medium text-gray-800">0881027311886</p>
+                            </div>
+                            <div class="col-span-2">
+                                <p class="text-gray-500 text-xs">📍 Alamat</p>
+                                <p id="previewAlamat" class="font-medium text-gray-700 text-sm">jln.petamburan 06</p>
+                            </div>
+                            <div class="col-span-2">
+                                <p class="text-gray-500 text-xs flex items-center gap-1"><i class="far fa-clock"></i> Jam Operasional</p>
+                                <p id="previewJam" class="font-medium text-gray-700 text-sm">09.00 - 17.00</p>
+                            </div>
+                        </div>
+                        <div class="bg-gray-50 rounded-xl p-3">
+                            <p class="text-green-800 text-xs font-semibold flex items-center gap-1"><i class="fas fa-tag"></i> Kategori</p>
+                            <p id="previewKategori" class="text-gray-700 text-sm">usaha kuliner, makanan cepat saji</p>
+                            <p class="text-green-800 text-xs font-semibold mt-2 flex items-center gap-1"><i class="fas fa-utensil-spoon"></i> Deskripsi</p>
+                            <p id="previewDeskripsi" class="text-gray-600 text-xs leading-relaxed">mie kuning rebus dengan topping ayam kecap, sayuran, dan kuah gurih.</p>
+                        </div>
+
+                        <!-- Daftar Produk Preview -->
+                        <div>
+                            <p class="text-green-700 text-sm font-semibold flex items-center gap-1"><i class="fas fa-receipt"></i> Daftar Menu</p>
+                            <div id="previewDaftarProduk" class="mt-2 space-y-1.5 text-sm">
+                                <!-- dynamic product list -->
+                                <div class="flex items-start gap-2 text-gray-700"><span class="text-green-500 text-xs">•</span> mie ayam biasa 15.000</div>
+                                <div class="flex items-start gap-2 text-gray-700"><span class="text-green-500 text-xs">•</span> mie ayam spesial bakso + pangsit rebus 20.000</div>
+                            </div>
+                        </div>
+
+                        <!-- Highlight: Produk Unggulan -->
+                        <div class="bg-amber-50 rounded-xl p-3 border-l-4 border-amber-400 mt-1">
+                            <p class="text-amber-800 text-xs font-bold uppercase tracking-wide">⭐ Produk Unggulan</p>
+                            <p class="font-semibold text-gray-800" id="previewNamaProdukUnggul">mie ayam alok</p>
+                            <p class="text-green-700 text-sm font-medium" id="previewHargaUnggul">15.000 - 20.000 spesial</p>
+                            <p class="text-gray-500 text-xs mt-1 italic" id="previewDeskripsiUnggul">rasanya sangat lezat dan kuah nya gurih</p>
+                        </div>
+                        
+                        <div class="pt-2 text-center text-[11px] text-gray-400 flex justify-between">
+                            <span><i class="fas-regular fa-building"></i> UMKM terdaftar</span>
+                            <span><i class="fas fa-check-circle text-green-500"></i> Data sinkron langsung</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bagian Animasi Footer / Jam operasional dan credit -->
+        <div class="max-w-4xl mx-auto mt-10 text-center text-sm text-gray-500 bg-white/50 backdrop-blur-sm p-3 rounded-2xl shadow-sm">
+            <i class="fas fa-mobile-alt text-green-500 mr-1"></i> Form responsif & real-time preview — Data UMKM Mie Ayam Alok siap dipromosikan. 
+            <span class="inline-flex ml-2 items-center gap-1"><i class="fas fa-leaf text-green-600"></i> Dukung UMKM Lokal</span>
+        </div>
+    </div>
+
+    <!-- JavaScript interaktif untuk sync preview & pesan animasi -->
+    <script>
+        (function() {
+            // Element form values
+            const namaUMKM = document.getElementById('namaUMKM');
+            const namaPemilik = document.getElementById('namaPemilik');
+            const alamat = document.getElementById('alamat');
+            const noHp = document.getElementById('noHp');
+            const email = document.getElementById('email');
+            const jamOperasional = document.getElementById('jamOperasional');
+            const kategori = document.getElementById('kategori');
+            const deskripsi = document.getElementById('deskripsi');
+            const daftarProduk = document.getElementById('daftarProduk');
+            const namaProdukUnggulan = document.getElementById('namaProdukUnggulan');
+            const hargaRange = document.getElementById('hargaRange');
+            const deskripsiSingkat = document.getElementById('deskripsiSingkat');
+
+            // Preview elements
+            const previewNamaUMKM = document.getElementById('previewNamaUMKM');
+            const previewPemilik = document.getElementById('previewPemilik');
+            const previewAlamat = document.getElementById('previewAlamat');
+            const previewKontak = document.getElementById('previewKontak');
+            const previewJam = document.getElementById('previewJam');
+            const previewKategori = document.getElementById('previewKategori');
+            const previewDeskripsi = document.getElementById('previewDeskripsi');
+            const previewDaftarProduk = document.getElementById('previewDaftarProduk');
+            const previewNamaProdukUnggul = document.getElementById('previewNamaProdukUnggul');
+            const previewHargaUnggul = document.getElementById('previewHargaUnggul');
+            const previewDeskripsiUnggul = document.getElementById('previewDeskripsiUnggul');
+            const formFeedback = document.getElementById('formFeedback');
+
+            // Function untuk mengupdate seluruh preview 
+            function updatePreview() {
+                previewNamaUMKM.innerText = namaUMKM.value.trim() || "mie ayam alok";
+                previewPemilik.innerText = namaPemilik.value.trim() || "rasyaa";
+                previewAlamat.innerText = alamat.value.trim() || "jln.petamburan 06";
+                previewKontak.innerText = noHp.value.trim() || "0881027311886";
+                previewJam.innerText = jamOperasional.value.trim() || "09.00 - 17.00";
+                previewKategori.innerText = kategori.value.trim() || "usaha kuliner, makanan cepat saji";
+                previewDeskripsi.innerText = deskripsi.value.trim() || "mie kuning rebus dengan topping ayam kecap, sayuran, dan kuah gurih.";
+                
+                // Daftar Produk parsing simple: tampilkan bullet point
+                let produkRaw = daftarProduk.value;
+                if (!produkRaw.trim()) produkRaw = "1. mie ayam biasa 15.000\n2. mie ayam spesial bakso + pangsit rebus 20.000";
+                const lines = produkRaw.split(/\r?\n/);
+                let produkHtml = '';
+                for(let line of lines) {
+                    if(line.trim() !== "") {
+                        produkHtml += `<div class="flex items-start gap-2 text-gray-700 text-sm"><span class="text-green-500 text-xs">🍜</span> ${escapeHtml(line.trim())}</div>`;
+                    }
+                }
+                if(!produkHtml) produkHtml = '<div class="text-gray-400 text-xs">Belum ada produk ditambahkan</div>';
+                previewDaftarProduk.innerHTML = produkHtml;
+                
+                // produk unggulan
+                previewNamaProdukUnggul.innerText = namaProdukUnggulan.value.trim() || "mie ayam alok";
+                previewHargaUnggul.innerText = hargaRange.value.trim() || "15.000 - 20.000 spesial";
+                previewDeskripsiUnggul.innerText = deskripsiSingkat.value.trim() || "rasanya sangat lezat dan kuah nya gurih";
+            }
+
+            // Helper fungsi escape sederhana untuk menghindari XSS
+            function escapeHtml(str) {
+                if (!str) return '';
+                return str.replace(/[&<>]/g, function(m) {
+                    if (m === '&') return '&amp;';
+                    if (m === '<') return '&lt;';
+                    if (m === '>') return '&gt;';
+                    return m;
+                }).replace(/[\uD800-\uDBFF][\uDC00-\uDFFF]/g, function(c) {
+                    return c;
+                });
+            }
+
+            // Daftar semua input yang akan memicu update preview
+            const allInputs = [namaUMKM, namaPemilik, alamat, noHp, jamOperasional, kategori, deskripsi, daftarProduk, namaProdukUnggulan, hargaRange, deskripsiSingkat];
+            allInputs.forEach(input => {
+                if(input) {
+                    input.addEventListener('input', function() {
+                        updatePreview();
+                        // Feedback sementara hilangkan notifikasi ketika edit
+                        if(formFeedback.classList.contains('hidden') === false) {
+                            setTimeout(() => {
+                                if(!formFeedback.classList.contains('hidden')) formFeedback.classList.add('hidden');
+                            }, 1500);
+                        }
+                    });
+                    input.addEventListener('change', updatePreview);
+                }
+            });
+            
+            // tombol simpan (simulasi penyimpanan, menampilkan notifikasi sukses)
+            const simpanBtn = document.getElementById('simpanBtn');
+            simpanBtn.addEventListener('click', function(e){
+                e.preventDefault();
+                // mengumpulkan data form untuk ditampilkan dalam notifikasi modern
+                const dataUMKM = {
+                    nama: namaUMKM.value,
+                    pemilik: namaPemilik.value,
+                    alamat: alamat.value,
+                    kontak: noHp.value,
+                    email: email.value || '(tidak diisi)',
+                    jam: jamOperasional.value,
+                    kategori: kategori.value,
+                    deskripsiUsaha: deskripsi.value,
+                    produkList: daftarProduk.value,
+                    unggulan: namaProdukUnggulan.value,
+                    hargaUnggulan: hargaRange.value,
+                    descUnggulan: deskripsiSingkat.value,
+                };
+                console.log("Data tersimpan:", dataUMKM);
+                // Tampilkan feedback sukses dengan animasi
+                formFeedback.innerHTML = `<i class="fas fa-check-circle mr-1 text-green-500"></i> Data UMKM "${dataUMKM.nama}" berhasil disimpan! (preview terupdate)`;
+                formFeedback.classList.remove('hidden', 'bg-red-100', 'text-red-700');
+                formFeedback.classList.add('bg-green-100', 'text-green-800', 'p-3', 'rounded-xl', 'shadow-sm', 'flex', 'items-center');
+                setTimeout(() => {
+                    formFeedback.classList.add('hidden');
+                }, 2800);
+                // juga scroll sedikit hehe
+                updatePreview();
+            });
+            
+            // reset form ke nilai awal sesuai data yang diberikan user soal
+            const resetBtn = document.getElementById('resetBtn');
+            resetBtn.addEventListener('click', function(e){
+                e.preventDefault();
+                namaUMKM.value = "mie ayam alok";
+                namaPemilik.value = "rasyaa";
+                alamat.value = "jln.petamburan 06";
+                noHp.value = "0881027311886";
+                email.value = "";
+                jamOperasional.value = "09.00 - 17.00";
+                kategori.value = "usaha kuliner, makanan cepat saji";
+                deskripsi.value = "mie kuning rebus dengan topping ayam kecap, sayuran, dan kuah gurih.";
+                daftarProduk.value = "1. mie ayam biasa 15.000\n2. mie ayam spesial bakso + pangsit rebus 20.000";
+                namaProdukUnggulan.value = "mie ayam alok";
+                hargaRange.value = "15.000 - 20.000 spesial";
+                deskripsiSingkat.value = "rasanya sangat lezat dan kuah nya gurih";
+                updatePreview();
+                formFeedback.innerHTML = `<i class="fas fa-sync-alt mr-1 text-blue-500"></i> Form dikembalikan ke data awal Mie Ayam Alok.`;
+                formFeedback.classList.remove('hidden', 'bg-green-100');
+                formFeedback.classList.add('bg-blue-50', 'text-blue-700', 'p-3', 'rounded-xl', 'flex', 'items-center');
+                setTimeout(() => {
+                    formFeedback.classList.add('hidden');
+                }, 2000);
+            });
+            
+            // Inisialisasi pertama: update preview
+            updatePreview();
+            
+            // Optional: validasi sederhana tidak mengganggu, semua data sudah lengkap menurut desk.
+        })();
+    </script>
+</body>
+</html>
